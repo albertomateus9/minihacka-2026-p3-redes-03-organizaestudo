@@ -102,7 +102,13 @@ footer {
 }
 
 .hero-copy {
+  min-width: 0;
   max-width: 44rem;
+}
+
+.preview-copy,
+.section-heading {
+  min-width: 0;
 }
 
 h1,
@@ -110,6 +116,7 @@ h2,
 h3,
 p {
   margin-top: 0;
+  overflow-wrap: break-word;
 }
 
 h1 {
@@ -247,7 +254,8 @@ p {
 }
 
 .section-heading span,
-.preview-copy > span {
+.preview-copy > span,
+.demo-panel span {
   display: block;
   margin-bottom: 0.65rem;
   color: var(--primary);
@@ -255,6 +263,7 @@ p {
 }
 
 .feature-grid,
+.examples-grid,
 .team-grid,
 .metric-grid {
   display: grid;
@@ -263,6 +272,7 @@ p {
 }
 
 .feature-card,
+.example-card,
 .member-card,
 .metric-card {
   min-height: 13rem;
@@ -283,6 +293,17 @@ p {
   font-weight: 900;
 }
 
+.example-card {
+  display: flex;
+  min-height: 11rem;
+  flex-direction: column;
+  justify-content: space-between;
+  border-color: color-mix(in srgb, var(--primary) 18%, #dfe7f0);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, #ffffff), #ffffff 58%),
+    #ffffff;
+}
+
 .preview-section {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(21rem, 1fr);
@@ -293,6 +314,28 @@ p {
 .preview-copy {
   position: sticky;
   top: 6rem;
+}
+
+.demo-panel {
+  min-height: 13.5rem;
+  margin: 1.25rem 0;
+  border: 1px solid color-mix(in srgb, var(--primary) 24%, #dfe7f0);
+  border-radius: 8px;
+  padding: 1.25rem;
+  background: #ffffff;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+}
+
+.demo-panel strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #111827;
+  font-size: clamp(1.45rem, 3vw, 2.25rem);
+  line-height: 1.05;
+}
+
+.demo-panel p {
+  margin-bottom: 0;
 }
 
 .metric-grid {
@@ -374,6 +417,7 @@ footer a {
   }
 
   .feature-grid,
+  .examples-grid,
   .team-grid,
   .step-list {
     grid-template-columns: 1fr;
@@ -385,11 +429,27 @@ footer a {
   .section,
   footer,
   .site-header {
-    width: min(100% - 1.25rem, 1120px);
+    width: min(calc(100% - 2rem), 1120px);
+  }
+
+  .hero-copy,
+  .preview-copy {
+    width: 100%;
+    max-width: calc(100vw - 3rem);
+    padding-right: 1rem;
   }
 
   h1 {
     font-size: clamp(2.25rem, 15vw, 3.3rem);
+  }
+
+  .tagline {
+    font-size: 1.05rem;
+    max-width: 20rem;
+  }
+
+  p {
+    font-size: 1rem;
   }
 
   .hero-actions,

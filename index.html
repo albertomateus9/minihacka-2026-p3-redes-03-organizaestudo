@@ -16,6 +16,7 @@
       </a>
       <nav aria-label="Navegação principal">
         <a href="#recursos">Recursos</a>
+        <a href="#exemplos">Exemplos</a>
         <a href="#previa">Prévia</a>
         <a href="#equipe">Equipe</a>
       </nav>
@@ -43,7 +44,7 @@
       <section class="section" id="recursos">
         <div class="section-heading">
           <span>Projeto da equipe 03</span>
-          <h2>Uma proposta simples para virar protótipo navegável.</h2>
+          <h2>Exemplos para transformar dificuldade em cronograma.</h2>
         </div>
         <div class="feature-grid">
           
@@ -65,17 +66,44 @@
         </div>
       </section>
 
+      <section class="section examples-section" id="exemplos">
+        <div class="section-heading">
+          <span>Exemplos de uso</span>
+          <h2>Dados fictícios para mostrar como a ideia funcionaria.</h2>
+        </div>
+        <div class="examples-grid">
+          
+        <article class="example-card">
+          <h3>Matéria com dificuldade</h3>
+          <p>O aluno marca Redes como difícil e recebe mais blocos de revisão.</p>
+        </article>
+        <article class="example-card">
+          <h3>Tempo disponível</h3>
+          <p>Com 1h30 por dia, o site divide estudo, pausa e retomada.</p>
+        </article>
+        <article class="example-card">
+          <h3>Lembrete de prova</h3>
+          <p>Datas de prova geram alertas e revisões próximas ao prazo.</p>
+        </article>
+        </div>
+      </section>
+
       <section class="section preview-section" id="previa">
         <div class="preview-copy">
           <span>Prévia interativa</span>
-          <h2>Experimente uma parte da ideia.</h2>
-          <p data-response>Matemática priorizada: duas sessões curtas e uma revisão no fim do dia.</p>
+          <h2>Troque o cenário e veja um exemplo da proposta.</h2>
+          <p data-demo-summary>Cronograma prioriza sub-redes, máscara e exercícios práticos antes da avaliação.</p>
           <div class="chip-row" aria-label="Opções da prévia">
             
-          <button class="chip is-active" type="button" data-response="Matemática priorizada: duas sessões curtas e uma revisão no fim do dia.">Matemática</button>
-          <button class="chip" type="button" data-response="Redes priorizada: prática guiada e revisão de conceitos antes da prova.">Redes</button>
-          <button class="chip" type="button" data-response="Português priorizado: leitura, interpretação e produção textual.">Português</button>
+          <button class="chip is-active" type="button" data-scenario-title="Revisão de endereçamento IP" data-scenario-summary="Cronograma prioriza sub-redes, máscara e exercícios práticos antes da avaliação." data-scenario-meta="Hoje - 2 blocos de 25 min" data-scenario-detail="A rotina sugere 25 minutos de teoria, 5 de pausa e 25 de exercícios com correção.">Redes</button>
+          <button class="chip" type="button" data-scenario-title="Lista de funções" data-scenario-summary="A matéria difícil entra no início do dia, quando o aluno informou ter mais foco." data-scenario-meta="Dificuldade alta" data-scenario-detail="O progresso avança quando o estudante marca a lista como concluída e agenda uma revisão curta.">Matemática</button>
+          <button class="chip" type="button" data-scenario-title="Prova na quinta-feira" data-scenario-summary="O sistema distribui revisão para evitar estudar tudo na véspera." data-scenario-meta="Lembrete ativo" data-scenario-detail="A sugestão fictícia inclui revisão hoje, simulado amanhã e resumo final no dia anterior.">Provas</button>
           </div>
+          <article class="demo-panel" aria-live="polite">
+            <span data-demo-meta>Hoje - 2 blocos de 25 min</span>
+            <strong data-demo-title>Revisão de endereçamento IP</strong>
+            <p data-demo-detail>A rotina sugere 25 minutos de teoria, 5 de pausa e 25 de exercícios com correção.</p>
+          </article>
           <button class="button button-primary" type="button" data-demo-action>Montar cronograma</button>
           <p class="counter" data-counter>Interações nesta visita: 0</p>
         </div>
