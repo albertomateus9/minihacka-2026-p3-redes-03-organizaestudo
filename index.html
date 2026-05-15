@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OrganizaEstudo | MiniHacka P3 Redes</title>
+    <meta name="description" content="Uma plataforma que cria uma rotina de estudos a partir das dificuldades, do tempo disponível por dia e das datas de provas ou trabalhos." />
+    <meta name="theme-color" content="#6846d9" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body style="--primary: #6846d9; --secondary: #00a6a6; --accent: #ffb000;">
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="OrganizaEstudo">
+        <span class="brand-mark">03</span>
+        <span>Estudos</span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="#recursos">Recursos</a>
+        <a href="#previa">Prévia</a>
+        <a href="#equipe">Equipe</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <h1>OrganizaEstudo</h1>
+          <p class="tagline">Cronogramas personalizados para estudar com foco.</p>
+          <p>Uma plataforma que cria uma rotina de estudos a partir das dificuldades, do tempo disponível por dia e das datas de provas ou trabalhos.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#previa">Montar cronograma</a>
+            <a class="button button-secondary" href="#equipe">Conhecer equipe</a>
+          </div>
+          <ol class="step-list" aria-label="Fluxo principal">
+            <li>Informar matérias</li><li>Definir tempo</li><li>Seguir rotina</li>
+          </ol>
+        </div>
+        <div class="hero-media" aria-label="Visual do projeto">
+          <img src="assets/visual.svg" alt="Prévia visual do site OrganizaEstudo" />
+        </div>
+      </section>
+
+      <section class="section" id="recursos">
+        <div class="section-heading">
+          <span>Projeto da equipe 03</span>
+          <h2>Uma proposta simples para virar protótipo navegável.</h2>
+        </div>
+        <div class="feature-grid">
+          
+        <article class="feature-card">
+          <span class="feature-index">01</span>
+          <h3>Plano por dificuldade</h3>
+          <p>Matérias mais difíceis recebem mais tempo e revisões no cronograma.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-index">02</span>
+          <h3>Pausas e revisões</h3>
+          <p>A rotina combina estudo, descanso e retomada do conteúdo.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-index">03</span>
+          <h3>Lembretes</h3>
+          <p>Avisos ajudam o aluno a manter o ritmo até provas e entregas.</p>
+        </article>
+        </div>
+      </section>
+
+      <section class="section preview-section" id="previa">
+        <div class="preview-copy">
+          <span>Prévia interativa</span>
+          <h2>Experimente uma parte da ideia.</h2>
+          <p data-response>Matemática priorizada: duas sessões curtas e uma revisão no fim do dia.</p>
+          <div class="chip-row" aria-label="Opções da prévia">
+            
+          <button class="chip is-active" type="button" data-response="Matemática priorizada: duas sessões curtas e uma revisão no fim do dia.">Matemática</button>
+          <button class="chip" type="button" data-response="Redes priorizada: prática guiada e revisão de conceitos antes da prova.">Redes</button>
+          <button class="chip" type="button" data-response="Português priorizado: leitura, interpretação e produção textual.">Português</button>
+          </div>
+          <button class="button button-primary" type="button" data-demo-action>Montar cronograma</button>
+          <p class="counter" data-counter>Interações nesta visita: 0</p>
+        </div>
+        <div class="metric-grid">
+          
+          <article class="metric-card">
+            <span>Hoje</span>
+            <strong>3 blocos</strong>
+            <p>Estudo, pausa e revisão.</p>
+          </article>
+          <article class="metric-card">
+            <span>Progresso</span>
+            <strong>68%</strong>
+            <p>Meta semanal em andamento.</p>
+          </article>
+          <article class="metric-card">
+            <span>Próxima prova</span>
+            <strong>Quinta</strong>
+            <p>Revisão sugerida para amanhã.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section team-section" id="equipe">
+        <div class="section-heading">
+          <span>Integrantes</span>
+          <h2>Funções da equipe no desenvolvimento.</h2>
+        </div>
+        <div class="team-grid">
+          
+        <article class="member-card">
+          <span>Gerente de Ideias</span>
+          <strong>Maike Monteiro</strong>
+        </article>
+        <article class="member-card">
+          <span>Designer</span>
+          <strong>Rebeca Stella Maia</strong>
+        </article>
+        <article class="member-card">
+          <span>Construtor(a) HTML</span>
+          <strong>Vinicius Mikael</strong>
+        </article>
+        <article class="member-card">
+          <span>Estilista CSS</span>
+          <strong>Igor Miguel Vieira</strong>
+        </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>MiniHacka 2026-1 - 3º período de Redes de Computadores (Integrado).</p>
+      <a href="#inicio">Voltar ao topo</a>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
