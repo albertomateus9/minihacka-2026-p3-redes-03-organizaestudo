@@ -265,3 +265,213 @@ if (todoForm) {
 // Initial Calls
 updateTimerDisplay();
 renderTasks();
+
+// --- Gerador de Cronograma Inteligente ---
+const scheduleForm = document.getElementById("schedule-form");
+const scheduleHoursSelect = document.getElementById("schedule-hours");
+const examDateInput = document.getElementById("exam-date");
+const scheduleTableContainer = document.getElementById("schedule-table-container");
+const scheduleSummaryBadge = document.getElementById("schedule-summary-badge");
+
+if (scheduleForm) {
+  scheduleForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    // Get chosen difficulties
+    const checkedBoxes = document.querySelectorAll('input[name="difficulty"]:checked');
+    const difficulties = Array.from(checkedBoxes).map(cb => cb.value);
+    
+    if (difficulties.length === 0) {
+      alert("Por favor, selecione pelo menos uma disciplina de dificuldade!");
+      return;
+    }
+    
+    const dailyHours = parseInt(scheduleHoursSelect.value, 10);
+    const examDateVal = examDateInput.value;
+    
+    if (!examDateVal) {
+      alert("Por favor, selecione uma data de exame!");
+      return;
+    }
+    
+    // Parse exam date
+    const today = new Date();
+    const examDate = new Date(examDateVal);
+    const timeDiff = examDate.getTime() - today.getTime();
+    const daysRemaining = Math.max(1, Math.ceil(timeDiff / (1000 * 3600 * 24)));
+    
+    // Update badge
+    scheduleSummaryBadge.textContent = `${daysRemaining} dias até a prova`;
+    
+    // Generate schedule grid (Mon - Fri)
+    const daysOfWeek = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira"];
+    
+    // Determine study structure based on daily hours
+    let scheduleHTML = `
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Dia</th>
+            <th>Horário / Bloco</th>
+            <th>Atividade / Matéria</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+    
+    daysOfWeek.forEach((day, index) => {
+      // Rotate difficulties
+      const primarySubject = difficulties[index % difficulties.length];
+      const secondarySubject = difficulties[(index + 1) % difficulties.length] || primarySubject;
+      
+      if (dailyHours === 1) {
+        scheduleHTML += `
+          <tr>
+            <td rowspan="3" class="bold">${day}</td>
+            <td>14:00 - 14:25</td>
+            <td>Estudo: <strong>${escapeHTML(primarySubject)}</strong></td>
+            <td><span class="schedule-block-tag study">Estudo</span></td>
+          </tr>
+          <tr>
+            <td>14:25 - 14:30</td>
+            <td>Pausa relaxante</td>
+            <td><span class="schedule-block-tag break">Pausa</span></td>
+          </tr>
+          <tr>
+            <td>14:30 - 14:55</td>
+            <td>Revisão / Exercícios: <strong>${escapeHTML(primarySubject)}</strong></td>
+            <td><span class="schedule-block-tag review">Revisão</span></td>
+          </tr>
+        `;
+      } else if (dailyHours === 2) {
+        scheduleHTML += `
+          <tr>
+            <td rowspan="5" class="bold">${day}</td>
+            <td>14:00 - 14:25</td>
+            <td>Estudo Focado: <strong>${escapeHTML(primarySubject)}</strong></td>
+            <td><span class="schedule-block-tag study">Estudo</span></td>
+          </tr>
+          <tr>
+            <td>14:25 - 14:30</td>
+            <td>Pausa curta</td>
+            <td><span class="schedule-block-tag break">Pausa</span></td>
+          </tr>
+          <tr>
+            <td>14:30 - 14:55</td>
+            <td>Estudo Focado: <strong>${escapeHTML(secondarySubject)}</strong></td>
+            <td><span class="schedule-block-tag study">Estudo</span></td>
+          </tr>
+          <tr>
+            <td>14:55 - 15:00</td>
+            <td>Pausa curta</td>
+            <td><span class="schedule-block-tag break">Pausa</span></td>
+          </tr>
+          <tr>
+            <td>15:00 - 15:30</td>
+            <td>Revisão Geral e Resumos</td>
+            <td><span class="schedule-block-tag review">Revisão</span></td>
+          </tr>
+        `;
+      } else if (dailyHours === 3) {
+        scheduleHTML += `
+          <tr>
+            <td rowspan="7" class="bold">${day}</td>
+            <td>14:00 - 14:25</td>
+            <td>Teoria: <strong>${escapeHTML(primarySubject)}</strong></td>
+            <td><span class="schedule-block-tag study">Estudo</span></td>
+          </tr>
+          <tr>
+            <td>14:25 - 14:30</td>
+            <td>Pausa rápida</td>
+            <td><span class="schedule-block-tag break">Pausa</span></td>
+          </tr>
+          <tr>
+            <td>14:30 - 14:55</td>
+            <td>Teoria: <strong>${escapeHTML(secondarySubject)}</strong></td>
+            <td><span class="schedule-block-tag study">Estudo</span></td>
+          </tr>
+          <tr>
+            <td>14:55 - 15:00</td>
+            <td>Pausa rápida</td>
+            <td><span class="schedule-block-tag break">Pausa</span></td>
+          </tr>
+          <tr>
+            <td>15:00 - 15:25</td>
+            <td>Simulado prático de redes</td>
+            <td><span class="schedule-block-tag study">Estudo</span></td>
+          </tr>
+          <tr>
+            <td>15:25 - 15:30</td>
+            <td>Pausa rápida</td>
+            <td><span class="schedule-block-tag break">Pausa</span></td>
+          </tr>
+          <tr>
+            <td>15:30 - 16:00</td>
+            <td>Resolução de Exercícios e Anotações</td>
+            <td><span class="schedule-block-tag review">Revisão</span></td>
+          </tr>
+        `;
+      } else {
+        scheduleHTML += `
+          <tr>
+            <td rowspan="9" class="bold">${day}</td>
+            <td>14:00 - 14:25</td>
+            <td>Foco Redes/Telecom: <strong>${escapeHTML(primarySubject)}</strong></td>
+            <td><span class="schedule-block-tag study">Estudo</span></td>
+          </tr>
+          <tr>
+            <td>14:25 - 14:30</td>
+            <td>Pausa curta</td>
+            <td><span class="schedule-block-tag break">Pausa</span></td>
+          </tr>
+          <tr>
+            <td>14:30 - 14:55</td>
+            <td>Foco Programação/Sistemas: <strong>${escapeHTML(secondarySubject)}</strong></td>
+            <td><span class="schedule-block-tag study">Estudo</span></td>
+          </tr>
+          <tr>
+            <td>14:55 - 15:00</td>
+            <td>Pausa curta</td>
+            <td><span class="schedule-block-tag break">Pausa</span></td>
+          </tr>
+          <tr>
+            <td>15:00 - 15:25</td>
+            <td>Estudos Gerais Acadêmicos</td>
+            <td><span class="schedule-block-tag study">Estudo</span></td>
+          </tr>
+          <tr>
+            <td>15:25 - 15:30</td>
+            <td>Pausa curta</td>
+            <td><span class="schedule-block-tag break">Pausa</span></td>
+          </tr>
+          <tr>
+            <td>15:30 - 15:55</td>
+            <td>Revisão de Conteúdo Anteriores</td>
+            <td><span class="schedule-block-tag review">Revisão</span></td>
+          </tr>
+          <tr>
+            <td>15:55 - 16:00</td>
+            <td>Pausa curta</td>
+            <td><span class="schedule-block-tag break">Pausa</span></td>
+          </tr>
+          <tr>
+            <td>16:00 - 16:30</td>
+            <td>Fechamento e Preparação de Fichamentos</td>
+            <td><span class="schedule-block-tag review">Revisão</span></td>
+          </tr>
+        `;
+      }
+    });
+    
+    scheduleHTML += `
+        </tbody>
+      </table>
+    `;
+    
+    if (scheduleTableContainer) {
+      scheduleTableContainer.innerHTML = scheduleHTML;
+    }
+  });
+}
+

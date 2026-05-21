@@ -27,6 +27,7 @@
       </a>
       <nav aria-label="Navegação principal">
         <a href="#pomodoro">Pomodoro</a>
+        <a href="#cronograma">Cronograma</a>
         <a href="#tarefas">Tarefas</a>
         <a href="#dicas">Métodos</a>
         <a href="#equipe">Equipe</a>
@@ -40,18 +41,18 @@
         <div class="hero-copy">
           <span class="badge-tag">Rotina de Estudos</span>
           <h1>Domine sua rotina escolar na EETEPA</h1>
-          <p class="tagline">Combine o foco do método Pomodoro com uma lista de tarefas prática.</p>
+          <p class="tagline">Combine o foco do método Pomodoro com uma lista de tarefas prática e cronograma personalizado.</p>
           <p class="hero-description">O **OrganizaEstudo** foi desenvolvido para ajudar alunos de Redes e demais cursos da EETEPA Vilhena Alves a gerenciar o tempo, organizar entregas de laboratório e focar nos estudos sem distrações.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#pomodoro">Iniciar Pomodoro</a>
-            <a class="button button-secondary" href="#tarefas">Ver Minhas Tarefas</a>
+            <a class="button button-secondary" href="#cronograma">Gerar Cronograma</a>
           </div>
           <ol class="step-list" aria-label="Passos para o sucesso">
             <li>
               <span class="step-num">01</span>
               <div>
-                <strong>Adicione Tarefas</strong>
-                <span>Organize trabalhos por matéria</span>
+                <strong>Cronograma</strong>
+                <span>Organize horários de estudo</span>
               </div>
             </li>
             <li>
@@ -65,7 +66,7 @@
               <span class="step-num">03</span>
               <div>
                 <strong>Descanse</strong>
-                <span>Pausas curtas para refrescar a mente</span>
+                <span>Pausas curtas para a mente</span>
               </div>
             </li>
           </ol>
@@ -132,6 +133,72 @@
                 <div><strong>Retome ou Conclua:</strong> Repita o ciclo. A cada 4 blocos, faça uma pausa maior de 15 a 30 minutos.</div>
               </li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- CRONOGRAMA PERSONALIZADO SECTION -->
+      <section class="section schedule-section" id="cronograma">
+        <div class="section-heading">
+          <span>Cronograma Inteligente</span>
+          <h2>Gerador de Cronograma de Estudos</h2>
+          <p>Informe suas maiores dificuldades e rotina diária para o sistema estruturar uma agenda de estudos semanal sob medida para a EETEPA Vilhena Alves.</p>
+        </div>
+
+        <div class="schedule-layout">
+          <!-- Form Card -->
+          <div class="schedule-form-card glass-panel">
+            <h3>Personalizar Minha Rotina</h3>
+            <form id="schedule-form">
+              <div class="form-group">
+                <label>Disciplinas de Maior Dificuldade</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="difficulty" value="Redes de Computadores" checked> Redes de Computadores
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="difficulty" value="Sistemas Operacionais"> Sistemas Operacionais
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="difficulty" value="Matemática"> Matemática
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="difficulty" value="Língua Portuguesa"> Língua Portuguesa
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="difficulty" value="Física/Química"> Física / Química
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="schedule-hours">Tempo Disponível Diário</label>
+                <select id="schedule-hours" class="custom-select">
+                  <option value="1">1 hora por dia</option>
+                  <option value="2" selected>2 horas por dia</option>
+                  <option value="3">3 horas por dia</option>
+                  <option value="4">4 horas por dia</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="exam-date">Data do Próximo Exame/Trabalho</label>
+                <input type="date" id="exam-date" required />
+              </div>
+
+              <button type="submit" class="button button-primary button-full" id="btn-generate-schedule">Gerar Cronograma Personalizado</button>
+            </form>
+          </div>
+
+          <!-- Schedule Grid Display Card -->
+          <div class="schedule-display-card glass-panel">
+            <div class="schedule-display-header">
+              <h3>Sua Planilha Semanal</h3>
+              <span class="schedule-badge" id="schedule-summary-badge">Digite os dados ao lado</span>
+            </div>
+            <div class="schedule-table-container" id="schedule-table-container">
+              <p class="schedule-placeholder">Preencha o formulário ao lado para gerar dinamicamente seu cronograma com blocos de foco e pausas de descanso.</p>
+            </div>
           </div>
         </div>
       </section>
