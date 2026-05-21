@@ -1,162 +1,262 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>OrganizaEstudo | MiniHacka P3 Redes</title>
-    <meta name="description" content="Uma plataforma que cria uma rotina de estudos a partir das dificuldades, do tempo disponível por dia e das datas de provas ou trabalhos." />
-    <meta name="theme-color" content="#6846d9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OrganizaEstudo | Produtividade EETEPA</title>
+    <meta name="description" content="Planejador de estudos com lista de tarefas escolares e Pomodoro Timer integrado para alunos da EETEPA Vilhena Alves." />
+    <meta name="theme-color" content="#4c1d95" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body style="--primary: #6846d9; --secondary: #00a6a6; --accent: #ffb000;">
+  <body style="--primary: #8b5cf6; --secondary: #06b6d4; --accent: #f43f5e; --bg-color: #0b071e;">
+    
+    <!-- Glow backgrounds -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
     <header class="site-header">
       <a class="brand" href="#inicio" aria-label="OrganizaEstudo">
         <span class="brand-mark">03</span>
-        <span>Estudos</span>
+        <span>OrganizaEstudo<span class="brand-dot">.</span></span>
       </a>
       <nav aria-label="Navegação principal">
-        <a href="#recursos">Recursos</a>
-        <a href="#exemplos">Exemplos</a>
-        <a href="#previa">Prévia</a>
+        <a href="#pomodoro">Pomodoro</a>
+        <a href="#tarefas">Tarefas</a>
+        <a href="#dicas">Métodos</a>
         <a href="#equipe">Equipe</a>
       </nav>
     </header>
 
     <main>
+      
+      <!-- HERO SECTION -->
       <section class="hero" id="inicio">
         <div class="hero-copy">
-          <h1>OrganizaEstudo</h1>
-          <p class="tagline">Cronogramas personalizados para estudar com foco.</p>
-          <p>Uma plataforma que cria uma rotina de estudos a partir das dificuldades, do tempo disponível por dia e das datas de provas ou trabalhos.</p>
+          <span class="badge-tag">Rotina de Estudos</span>
+          <h1>Domine sua rotina escolar na EETEPA</h1>
+          <p class="tagline">Combine o foco do método Pomodoro com uma lista de tarefas prática.</p>
+          <p class="hero-description">O **OrganizaEstudo** foi desenvolvido para ajudar alunos de Redes e demais cursos da EETEPA Vilhena Alves a gerenciar o tempo, organizar entregas de laboratório e focar nos estudos sem distrações.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#previa">Montar cronograma</a>
-            <a class="button button-secondary" href="#equipe">Conhecer equipe</a>
+            <a class="button button-primary" href="#pomodoro">Iniciar Pomodoro</a>
+            <a class="button button-secondary" href="#tarefas">Ver Minhas Tarefas</a>
           </div>
-          <ol class="step-list" aria-label="Fluxo principal">
-            <li>Informar matérias</li><li>Definir tempo</li><li>Seguir rotina</li>
+          <ol class="step-list" aria-label="Passos para o sucesso">
+            <li>
+              <span class="step-num">01</span>
+              <div>
+                <strong>Adicione Tarefas</strong>
+                <span>Organize trabalhos por matéria</span>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">02</span>
+              <div>
+                <strong>Inicie o Timer</strong>
+                <span>25 minutos de foco total</span>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">03</span>
+              <div>
+                <strong>Descanse</strong>
+                <span>Pausas curtas para refrescar a mente</span>
+              </div>
+            </li>
           </ol>
         </div>
-        <div class="hero-media" aria-label="Visual do projeto">
-          <img src="assets/visual.svg" alt="Prévia visual do site OrganizaEstudo" />
+        <div class="hero-media-wrapper">
+          <div class="hero-media">
+            <!-- Relógio Pomodoro Preview Widget -->
+            <div class="visual-pomodoro-preview glass-panel">
+              <div class="preview-card-header">
+                <span>Timer Rápido</span>
+                <strong class="mode-indicator pulse">Foco Ativo</strong>
+              </div>
+              <div class="preview-timer-circle">
+                <span id="quick-timer-display">25:00</span>
+              </div>
+              <p class="quick-timer-tip">Mantenha a aba aberta para ouvir os alertas!</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section" id="recursos">
+      <!-- POMODORO TIMER SECTION -->
+      <section class="section pomodoro-section" id="pomodoro">
         <div class="section-heading">
-          <span>Projeto da equipe 03</span>
-          <h2>Exemplos para transformar dificuldade em cronograma.</h2>
+          <span>Cronômetro Funcional</span>
+          <h2>Pomodoro EETEPA</h2>
+          <p>Divida seus estudos em blocos de foco máximo de 25 minutos seguidos por pausas curtas de 5 minutos.</p>
+        </div>
+
+        <div class="pomodoro-grid">
+          <div class="pomodoro-card glass-panel">
+            <div class="timer-tabs">
+              <button class="timer-tab-btn active" id="btn-focus-mode">Estudo (25m)</button>
+              <button class="timer-tab-btn" id="btn-break-mode">Pausa Curta (5m)</button>
+            </div>
+            
+            <div class="timer-time" id="timer-display">25:00</div>
+            
+            <div class="timer-controls">
+              <button class="button button-primary timer-btn" id="btn-timer-start-pause">Iniciar</button>
+              <button class="button button-secondary timer-btn" id="btn-timer-reset">Reiniciar</button>
+            </div>
+            
+            <div class="timer-status-msg" id="timer-status-text">Pronto para começar? Concentre-se!</div>
+          </div>
+
+          <div class="pomodoro-info glass-panel">
+            <h3>Como Funciona o Método?</h3>
+            <ul class="method-steps">
+              <li>
+                <div class="step-bullet">1</div>
+                <div><strong>Escolha uma tarefa:</strong> Selecione um item pendente da sua lista de tarefas abaixo.</div>
+              </li>
+              <li>
+                <div class="step-bullet">2</div>
+                <div><strong>Trabalhe sem distrações:</strong> Foque no estudo até o timer soar (25 minutos).</div>
+              </li>
+              <li>
+                <div class="step-bullet">3</div>
+                <div><strong>Pausa rápida:</strong> Descanse por 5 minutos (alongue-se, beba água).</div>
+              </li>
+              <li>
+                <div class="step-bullet">4</div>
+                <div><strong>Retome ou Conclua:</strong> Repita o ciclo. A cada 4 blocos, faça uma pausa maior de 15 a 30 minutos.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- TODO LIST SECTION -->
+      <section class="section todo-section" id="tarefas">
+        <div class="section-heading">
+          <span>Gerenciador de Atividades</span>
+          <h2>Minhas Tarefas Escolares</h2>
+          <p>Gerencie seus prazos de relatórios de Redes, listas de exercícios e trabalhos da EETEPA Vilhena Alves.</p>
+        </div>
+
+        <div class="todo-layout">
+          <!-- Form Card -->
+          <div class="todo-form-card glass-panel">
+            <h3>Nova Tarefa</h3>
+            <form id="todo-form">
+              <div class="form-group">
+                <label for="todo-title">Título da Tarefa</label>
+                <input type="text" id="todo-title" placeholder="Ex: Relatório de Cabeamento Estruturado" required />
+              </div>
+              <div class="form-group">
+                <label for="todo-subject">Matéria / Disciplina</label>
+                <select id="todo-subject">
+                  <option value="Redes de Computadores">Redes de Computadores</option>
+                  <option value="Sistemas Operacionais">Sistemas Operacionais</option>
+                  <option value="Matemática">Matemática</option>
+                  <option value="Língua Portuguesa">Língua Portuguesa</option>
+                  <option value="Outros">Outros</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="todo-priority">Prioridade</label>
+                <select id="todo-priority">
+                  <option value="Alta">Alta (Urgente)</option>
+                  <option value="Média" selected>Média</option>
+                  <option value="Baixa">Baixa</option>
+                </select>
+              </div>
+              <button type="submit" class="button button-primary button-full" id="btn-add-todo">Adicionar Tarefa</button>
+            </form>
+          </div>
+
+          <!-- List Card -->
+          <div class="todo-list-card glass-panel">
+            <div class="todo-list-header">
+              <h3>Lista de Pendências</h3>
+              <span class="todo-counter" id="todo-stats">0 concluintes / 0 totais</span>
+            </div>
+            
+            <div class="todo-list-container">
+              <ul class="todo-list" id="todo-list-element">
+                <!-- Dynamic tasks injected here -->
+                <li class="todo-placeholder">Nenhuma tarefa cadastrada. Adicione uma no formulário ao lado!</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- METODOS / DICAS SECTION -->
+      <section class="section methods-section" id="dicas">
+        <div class="section-heading">
+          <span>Dicas de Organização</span>
+          <h2>Dicas para Melhorar seu Rendimento</h2>
+          <p>Pequenas atitudes na rotina escolar da EETEPA Vilhena Alves que fazem grande diferença na hora das notas.</p>
         </div>
         <div class="feature-grid">
-          
-        <article class="feature-card">
-          <span class="feature-index">01</span>
-          <h3>Plano por dificuldade</h3>
-          <p>Matérias mais difíceis recebem mais tempo e revisões no cronograma.</p>
-        </article>
-        <article class="feature-card">
-          <span class="feature-index">02</span>
-          <h3>Pausas e revisões</h3>
-          <p>A rotina combina estudo, descanso e retomada do conteúdo.</p>
-        </article>
-        <article class="feature-card">
-          <span class="feature-index">03</span>
-          <h3>Lembretes</h3>
-          <p>Avisos ajudam o aluno a manter o ritmo até provas e entregas.</p>
-        </article>
-        </div>
-      </section>
-
-      <section class="section examples-section" id="exemplos">
-        <div class="section-heading">
-          <span>Exemplos de uso</span>
-          <h2>Dados fictícios para mostrar como a ideia funcionaria.</h2>
-        </div>
-        <div class="examples-grid">
-          
-        <article class="example-card">
-          <h3>Matéria com dificuldade</h3>
-          <p>O aluno marca Redes como difícil e recebe mais blocos de revisão.</p>
-        </article>
-        <article class="example-card">
-          <h3>Tempo disponível</h3>
-          <p>Com 1h30 por dia, o site divide estudo, pausa e retomada.</p>
-        </article>
-        <article class="example-card">
-          <h3>Lembrete de prova</h3>
-          <p>Datas de prova geram alertas e revisões próximas ao prazo.</p>
-        </article>
-        </div>
-      </section>
-
-      <section class="section preview-section" id="previa">
-        <div class="preview-copy">
-          <span>Prévia interativa</span>
-          <h2>Troque o cenário e veja um exemplo da proposta.</h2>
-          <p data-demo-summary>Cronograma prioriza sub-redes, máscara e exercícios práticos antes da avaliação.</p>
-          <div class="chip-row" aria-label="Opções da prévia">
-            
-          <button class="chip is-active" type="button" data-scenario-title="Revisão de endereçamento IP" data-scenario-summary="Cronograma prioriza sub-redes, máscara e exercícios práticos antes da avaliação." data-scenario-meta="Hoje - 2 blocos de 25 min" data-scenario-detail="A rotina sugere 25 minutos de teoria, 5 de pausa e 25 de exercícios com correção.">Redes</button>
-          <button class="chip" type="button" data-scenario-title="Lista de funções" data-scenario-summary="A matéria difícil entra no início do dia, quando o aluno informou ter mais foco." data-scenario-meta="Dificuldade alta" data-scenario-detail="O progresso avança quando o estudante marca a lista como concluída e agenda uma revisão curta.">Matemática</button>
-          <button class="chip" type="button" data-scenario-title="Prova na quinta-feira" data-scenario-summary="O sistema distribui revisão para evitar estudar tudo na véspera." data-scenario-meta="Lembrete ativo" data-scenario-detail="A sugestão fictícia inclui revisão hoje, simulado amanhã e resumo final no dia anterior.">Provas</button>
-          </div>
-          <article class="demo-panel" aria-live="polite">
-            <span data-demo-meta>Hoje - 2 blocos de 25 min</span>
-            <strong data-demo-title>Revisão de endereçamento IP</strong>
-            <p data-demo-detail>A rotina sugere 25 minutos de teoria, 5 de pausa e 25 de exercícios com correção.</p>
+          <article class="feature-card">
+            <span class="feature-index">01</span>
+            <h3>Desconecte Redes Sociais</h3>
+            <p>Durante o bloco Pomodoro de 25 minutos, coloque seu celular em modo Não Perturbe ou deixe-o em outro cômodo para garantir foco completo.</p>
           </article>
-          <button class="button button-primary" type="button" data-demo-action>Montar cronograma</button>
-          <p class="counter" data-counter>Interações nesta visita: 0</p>
-        </div>
-        <div class="metric-grid">
-          
-          <article class="metric-card">
-            <span>Hoje</span>
-            <strong>3 blocos</strong>
-            <p>Estudo, pausa e revisão.</p>
+          <article class="feature-card">
+            <span class="feature-index">02</span>
+            <h3>Use o Laboratório</h3>
+            <p>Aproveite os momentos vagos nos laboratórios de informática da escola para adiantar tarefas práticas de redes que exigem simuladores de cabeamento.</p>
           </article>
-          <article class="metric-card">
-            <span>Progresso</span>
-            <strong>68%</strong>
-            <p>Meta semanal em andamento.</p>
-          </article>
-          <article class="metric-card">
-            <span>Próxima prova</span>
-            <strong>Quinta</strong>
-            <p>Revisão sugerida para amanhã.</p>
+          <article class="feature-card">
+            <span class="feature-index">03</span>
+            <h3>Estude com Pausas</h3>
+            <p>Não tente estudar 4 horas seguidas na véspera. O cérebro absorve melhor a informação em blocos de estudo menores com pausas regulares.</p>
           </article>
         </div>
       </section>
 
+      <!-- TEAM SECTION -->
       <section class="section team-section" id="equipe">
         <div class="section-heading">
           <span>Integrantes</span>
-          <h2>Funções da equipe no desenvolvimento.</h2>
+          <h2>Equipe de Desenvolvimento</h2>
+          <p>Alunos do 3º período de Redes da EETEPA Vilhena Alves responsáveis pelo desenvolvimento do OrganizaEstudo.</p>
         </div>
         <div class="team-grid">
-          
-        <article class="member-card">
-          <span>Gerente de Ideias</span>
-          <strong>Maike Monteiro</strong>
-        </article>
-        <article class="member-card">
-          <span>Designer</span>
-          <strong>Rebeca Stella Maia</strong>
-        </article>
-        <article class="member-card">
-          <span>Construtor(a) HTML</span>
-          <strong>Vinicius Mikael</strong>
-        </article>
-        <article class="member-card">
-          <span>Estilista CSS</span>
-          <strong>Igor Miguel Vieira</strong>
-        </article>
+          <article class="member-card">
+            <img class="member-img" src="assets/member_maike.png" alt="Maike Monteiro" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="member-avatar-placeholder">MM</div>
+            <span>Gerente de Ideias</span>
+            <strong>Maike Monteiro</strong>
+          </article>
+          <article class="member-card">
+            <img class="member-img" src="assets/member_rebeca.png" alt="Rebeca Stella Maia" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="member-avatar-placeholder">RM</div>
+            <span>Designer</span>
+            <strong>Rebeca Stella Maia</strong>
+          </article>
+          <article class="member-card">
+            <img class="member-img" src="assets/member_vinicius.png" alt="Vinicius Mikael" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="member-avatar-placeholder">VM</div>
+            <span>Construtor HTML</span>
+            <strong>Vinicius Mikael</strong>
+          </article>
+          <article class="member-card">
+            <img class="member-img" src="assets/member_igor.png" alt="Igor Miguel Vieira" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="member-avatar-placeholder">IV</div>
+            <span>Estilista CSS</span>
+            <strong>Igor Miguel Vieira</strong>
+          </article>
         </div>
       </section>
     </main>
 
     <footer>
-      <p>MiniHacka 2026-1 - 3º período de Redes de Computadores (Integrado).</p>
-      <a href="#inicio">Voltar ao topo</a>
+      <p>&copy; 2026 MiniHacka P3 Redes - EETEPA Vilhena Alves. Todos os direitos reservados.</p>
+      <a href="#inicio">Voltar ao topo &uarr;</a>
     </footer>
 
     <script src="script.js" defer></script>
